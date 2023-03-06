@@ -1,6 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ClientiController;
+use App\Http\Controllers\OrdiniController;
+use App\Http\Controllers\FattureController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +16,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+/*
 Route::get('/', function () {
     return view('welcome');
 });
+*/
+
+Route::get('/clienti', [ClientiController::class, 'clientiView']);
+Route::get('/ordini', [OrdiniController::class, 'ordiniView']);
+Route::get('/fatture', [FattureController::class, 'fattureView']);
