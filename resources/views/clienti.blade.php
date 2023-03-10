@@ -25,4 +25,22 @@
         </tr>
     </table>
 
+    <table>
+            <thead>
+                <tr>
+                    <th scope="col">Nome</th>
+                    <th scope="col">Cognome</th>
+                  </tr>
+                </thead>
+    
+                <tbody>
+                    @foreach($nomi as $nome)
+                        <tr>
+                            <td>{{ $nome }}</td>
+                            <td>{{ $cognome }}</td>
+                        </tr>   
+                    @endforeach
+                </tbody>
+          </table>
+
 @endsection
