@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ClientiController;
 use App\Http\Controllers\OrdiniController;
 use App\Http\Controllers\FattureController;
+use App\Http\Controllers\OrderController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,3 +26,7 @@ Route::get('/', function () {
 Route::get('/clienti', [ClientiController::class, 'clientiView']);
 Route::get('/ordini', [OrdiniController::class, 'ordiniView']);
 Route::get('/fatture', [FattureController::class, 'fattureView']);
+
+Route::get('/ordini', [OrderController::class, 'index'])->name('orders.index');
+Route::get('/ordini/create', [OrderController::class, 'create'])->name('orders.create');
+Route::get('/ordini', [OrderController::class, 'store'])->name('orders.store');
