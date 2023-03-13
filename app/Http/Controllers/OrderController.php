@@ -13,9 +13,8 @@ class OrderController extends Controller
     public function index()
     {
         $orders = Order::all();
-        return view('orders.index', [
-            "orders" => $orders,
-        ]);
+
+        return view('orders.index', compact("orders"));
     }
 
     /**
@@ -33,18 +32,18 @@ class OrderController extends Controller
     {
         //Check per non andare avanti se non c è scritto nulla// 
         $validated = $request->validate([
-            "order" => 'required',
-            "total" => 'required'
+            "code" => 'required',
+            "total" => 'required',
             
         ]);
         //-------------------------//
 
-        Category::create([
-            "order" => $validated['order'],
-            "total" => $validated['total']
+        Order::create([
+            "code" => $validated['code'],
+            "total" => $validated['total'],
         ]);
 
-        return redirect( route('categories.index') )->with('message', 'Categoria creata con successo');
+        return redirect( route('orders.index') )->with('message', 'Ordine creato con successo');
     }
 
     /**

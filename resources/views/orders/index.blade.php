@@ -5,6 +5,14 @@
 @section('content')
     <h1 style = "color:red"><center><u>Lista Ordini</u></center></h1>
 
+    <div class="my-5">
+    @if ( session('message') )
+        <div class = "alert alert-success" role="alert">
+            {{session('message')}}
+        </div>
+    @endif
+</div>
+
     <table class="table">
         <thead>
             <tr>
@@ -25,15 +33,10 @@
     </table>
 
     <center>
-        <a  class="btn btn-primary">Aggiungi categoria</a> 
+        <a href="{{ route('orders.create') }}" class="btn btn-primary">Aggiungi ordine</a> 
     </center>
 
     <!--
-    @if ( session('message') )
-        <div class = "alert alert-suucess" role="alert">
-            {{session('message')}}
-        </div>
-    
-    @endif
+
     -->
 @endsection
