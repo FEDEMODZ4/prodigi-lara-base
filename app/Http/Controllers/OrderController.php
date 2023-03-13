@@ -59,7 +59,9 @@ class OrderController extends Controller
      */
     public function edit(Order $order)
     {
-        //
+        return view('orders.edit', [
+            "order" => $order
+        ]);
     }
 
     /**
@@ -67,7 +69,16 @@ class OrderController extends Controller
      */
     public function update(Request $request, Order $order)
     {
-        //
+        $validated = $request->validate([
+            "code" => 'required',
+            "total" => 'required',
+        ]);
+
+        $order->code = $validated['code'];
+        $order->total = $validated['total'];
+        $order->save();
+
+        return redirect( route('orders.index') )->with('message', 'Ordine modificato con successo');
     }
 
     /**
@@ -75,6 +86,7 @@ class OrderController extends Controller
      */
     public function destroy(Order $order)
     {
-        //
+        $order->delete();
+        return redirect( route('orders.index') )->with('message', 'Ordine eliminato con successo');
     }
 }
