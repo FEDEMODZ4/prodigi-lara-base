@@ -12,7 +12,9 @@ class InvoiceController extends Controller
      */
     public function index()
     {
-        //
+        $invoices = Invoice::all();
+
+        return view('invoices.index', compact("invoices"));
     }
 
     /**
@@ -20,7 +22,7 @@ class InvoiceController extends Controller
      */
     public function create()
     {
-        //
+        return view('invoices.create');
     }
 
     /**
@@ -28,9 +30,23 @@ class InvoiceController extends Controller
      */
     public function store(Request $request)
     {
-        //
-    }
+        //Check per non andare avanti se non c è scritto nulla// 
+        $validated = $request->validate([
+            "code" => 'required',
+            "total" => 'required',
+            "payment" => 'required',
+            
+        ]);
+        //-------------------------//
 
+        Invoice::create([
+            "code" => $validated['code'],
+            "total" => $validated['total'],
+            "payment" => $validated['payment'],
+        ]);
+
+        return redirect( route('invoices.index') )->with('message', 'Fattura creata con successo');
+    }
     /**
      * Display the specified resource.
      */

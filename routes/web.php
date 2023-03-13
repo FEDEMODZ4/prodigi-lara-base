@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\InvoiceController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,3 +30,4 @@ Route::get('/fatture', [FattureController::class, 'fattureView']);
 
 Route::resource('orders', OrderController::class);
 Route::resource('customers', CustomerController::class);
+Route::resource('invoices', InvoiceController::class);
