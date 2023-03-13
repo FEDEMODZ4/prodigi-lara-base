@@ -12,7 +12,9 @@ class CustomerController extends Controller
      */
     public function index()
     {
-        //
+        $customers = Customer::all();
+
+        return view('customers.index', compact("customers"));
     }
 
     /**
@@ -20,7 +22,7 @@ class CustomerController extends Controller
      */
     public function create()
     {
-        //
+        return view('customers.create');
     }
 
     /**
@@ -28,7 +30,20 @@ class CustomerController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //Check per non andare avanti se non c è scritto nulla// 
+        $validated = $request->validate([
+            "firstname" => 'required',
+            "lastname" => 'required',
+            
+        ]);
+        //-------------------------//
+
+        Customer::create([
+            "firstname" => $validated['firstname'],
+            "lastname" => $validated['lastname'],
+        ]);
+
+        return redirect( route('customers.index') )->with('message', 'Cliente aggiunto con successo');
     }
 
     /**
