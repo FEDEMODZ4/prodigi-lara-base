@@ -19,6 +19,8 @@
             <th scope="col">#</th>
             <th scope="col">Nome</th>
             <th scope="col">Cognome</th>
+            <th>Modifica</th>
+                <th>Cancella</th>
             </tr>
         </thead>
         <tbody>
@@ -27,16 +29,30 @@
                     <th>{{ $index+1 }}</th>
                     <td>{{ $customer->firstname }}</td>
                     <td>{{ $customer->lastname }}</td>
+                    <td>
+                        <a class="btn btn-warning" href="{{ route('customers.edit', $customer) }}">Modifica</a>
+                    </td>
+                    <td>
+                        <form method="post" action="{{ route('customers.destroy', $customer) }}">
+                            @method('delete')
+                            @csrf
+                            <button class="btn btn-danger confirm_delete">Cancella</button>
+                        </form>
+                    </td>
                 </tr>
             @endforeach
         </tbody>
     </table>
+    <script>
+        $('.confirm_delete').click(e => {
+            if (!confirm('Sei sicuro di cancellare?')) {
+                e.preventDefault();
+            }
+        });
+    </script>
 
     <center>
         <a href="{{ route('customers.create') }}" class="btn btn-primary">Aggiungi cliente</a> 
     </center>
 
-    <!--
-
-    -->
 @endsection
