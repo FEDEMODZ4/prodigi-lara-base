@@ -17,8 +17,8 @@
         <thead>
             <tr>
             <th scope="col">#</th>
-            <th scope="col">Ordine</th>
-            <th scope="col">Total</th>
+            <th scope="col">Nome</th>
+            <th scope="col">Cognome</th>
             </tr>
         </thead>
         <tbody>
